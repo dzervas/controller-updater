@@ -6,7 +6,7 @@
  * independent of the update protocol.
  */
 
-export type ControllerId = "xbox" | "gulikit";
+export type ControllerId = "xbox" | "gulikit" | "dualsense";
 
 export interface Detection {
   detected: boolean;

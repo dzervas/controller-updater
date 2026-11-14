@@ -6,6 +6,7 @@
  */
 
 import { createGulikitTool } from "./controllers/gulikit.js";
+import { createDualSenseTool } from "./controllers/dualsense.js";
 import { createXboxTool } from "./controllers/xbox.js";
 import type { ControllerId, ControllerTool, Detection } from "./controllers/types.js";
 import { byId, setStatus } from "./ui.js";
@@ -16,7 +17,7 @@ const tabsRoot = byId<HTMLElement>("controller-tabs");
 const detectStatus = byId<HTMLElement>("controller-detect");
 const browserWarning = byId<HTMLElement>("browser-warning");
 
-const tools: ControllerTool[] = [createXboxTool(), createGulikitTool()];
+const tools: ControllerTool[] = [createXboxTool(), createGulikitTool(), createDualSenseTool()];
 const toolById = new Map(tools.map((tool) => [tool.id, tool]));
 const tabs: HTMLButtonElement[] = [];
 

@@ -323,7 +323,46 @@
         </section>
       </div>
 
+      <div id="dualsense-flow" class="flow" hidden>
+        <section class="card">
+          <div class="card-head"><h2><span class="step">1</span> DualSense (experimental)</h2>
+            <span class="muted">USB cable; desktop Chromium with WebHID</span></div>
+          <div class="row wrap">
+            <button id="ds-connect" class="primary">Connect DualSense</button>
+            <span id="ds-status" class="status" role="status">Not connected.</span>
+          </div>
+          <dl id="ds-info" class="kv"></dl>
+          <h3><span class="step">2</span> Choose official firmware</h3>
+          <p class="notice warn">Firmware targets differ between hardware revisions, even
+            within the standard DualSense. Never guess from the USB product ID or version.
+            Obtain the correct Sony-signed FWUPDATE*.bin for your exact board/target.
+            This page does not automatically select a firmware image.</p>
+          <label class="button secondary">Choose FWUPDATE*.bin
+            <input id="ds-image" type="file" accept=".bin" hidden /></label>
+          <div id="ds-image-status" class="status"></div>
+          <h3><span class="step">3</span> Update</h3>
+          <label class="check"><input id="ds-confirm" type="checkbox" />
+            I independently verified this image is official Sony firmware for this exact
+            controller hardware; I accept the risk of an unrecoverable failure.</label>
+          <div class="row wrap"><button id="ds-update" class="danger" disabled>
+            Flash firmware (experimental)</button><span id="ds-update-status" class="status"></span></div>
+          <progress id="ds-progress" max="1" value="0" hidden></progress>
+          <pre id="ds-log" class="log" aria-live="polite"></pre>
+        </section>
+      </div>
+
       <section class="card help" id="help">
+        <div id="dualsense-help" hidden>
+          <h2>DualSense experimental updater</h2>
+          <p>Uses WebHID feature reports, not Xbox WebUSB. Only wired standard
+            DualSense (054c:0ce6) is enabled. Edge and unrecognized models are
+            intentionally blocked. Requires desktop Chromium and compatible
+            OS HID permissions. Firmware metadata/target mapping is not verified
+            automatically. If anything fails, use Sony's official updater.</p>
+          <p>Protocol derived from
+            <a href="https://github.com/nchie/dualsense-updater-rs">dualsense-updater-rs</a>
+            (MIT). Not hardware-tested.</p>
+        </div>
         <div id="xbox-help">
         <h2>Before you start</h2>
 
