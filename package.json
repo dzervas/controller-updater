@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Update Xbox controller firmware over WebUSB and copy official GuliKit KK3 firmware from a Chromium browser.",
   "scripts": {
-    "feed": "node scripts/fetch-feed.mjs && node scripts/fetch-gulikit-feed.mjs",
+    "feed": "node scripts/fetch-feed.mjs && node scripts/fetch-gulikit-feed.mjs && node scripts/fetch-dualsense-feed.mjs",
     "build": "tsc -p tsconfig.json && node scripts/build.mjs",
     "check": "tsc -p tsconfig.json --noEmit",
     "clean": "rm -rf dist"

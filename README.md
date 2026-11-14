@@ -9,7 +9,9 @@ site, no runtime server.
 Microsoft's CDN does not send CORS headers, so a browser cannot read the feed or
 the `.bin` files cross-origin. GuliKit's site is the same. `npm run feed`
 downloads the current Xbox feed and the official KK3 Max/Pro package into
-`data/`; `npm run build` copies that to `dist/data/`. The page reads the
+`data/`, along with Sony's DualSense index (`info.json`) and the latest
+`FWUPDATE<target>.bin` for each target in it; `npm run build` copies that to
+`dist/data/`. The page reads the
 snapshots same-origin and verifies each file against its SHA-256.
 
 If the Xbox snapshot is missing, the page falls back to the public allorigins

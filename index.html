@@ -332,18 +332,22 @@
             <span id="ds-status" class="status" role="status">Not connected.</span>
           </div>
           <dl id="ds-info" class="kv"></dl>
-          <h3><span class="step">2</span> Choose official firmware</h3>
-          <p class="notice warn">Firmware targets differ between hardware revisions, even
-            within the standard DualSense. Never guess from the USB product ID or version.
-            Obtain the correct Sony-signed FWUPDATE*.bin for your exact board/target.
-            This page does not automatically select a firmware image.</p>
-          <label class="button secondary">Choose FWUPDATE*.bin
-            <input id="ds-image" type="file" accept=".bin" hidden /></label>
-          <div id="ds-image-status" class="status"></div>
+          <h3><span class="step">2</span> Firmware</h3>
+          <div id="ds-feed-status" class="status" role="status">Looking up Sony's firmware index…</div>
+          <dl id="ds-feed-info" class="kv"></dl>
+          <div class="row wrap">
+            <label class="field">Target <select id="ds-target" disabled></select></label>
+            <button id="ds-download" class="primary" disabled>Download &amp; verify</button>
+            <a id="ds-manual-link" class="button secondary" target="_blank" rel="noreferrer" hidden>Direct download</a>
+            <label class="button secondary">Choose a local <code>.bin</code>
+              <input id="ds-image" type="file" accept=".bin,application/octet-stream" hidden /></label>
+          </div>
+          <progress id="ds-download-progress" max="1" value="0" hidden></progress>
+          <div id="ds-image-status" class="status" role="status"></div>
           <h3><span class="step">3</span> Update</h3>
           <label class="check"><input id="ds-confirm" type="checkbox" />
-            I independently verified this image is official Sony firmware for this exact
-            controller hardware; I accept the risk of an unrecoverable failure.</label>
+            I understand this updater is experimental and accept the risk of an
+            unrecoverable failure.</label>
           <div class="row wrap"><button id="ds-update" class="danger" disabled>
             Flash firmware (experimental)</button><span id="ds-update-status" class="status"></span></div>
           <progress id="ds-progress" max="1" value="0" hidden></progress>
@@ -357,8 +361,12 @@
           <p>Uses WebHID feature reports, not Xbox WebUSB. Only wired standard
             DualSense (054c:0ce6) is enabled. Edge and unrecognized models are
             intentionally blocked. Requires desktop Chromium and compatible
-            OS HID permissions. Firmware metadata/target mapping is not verified
-            automatically. If anything fails, use Sony's official updater.</p>
+            OS HID permissions. The firmware target (FWUPDATE0004, 000B or 000E)
+            is picked from the board revision the controller reports; that mapping
+            is community-sourced plus image-header evidence. The controller checks the
+            image header (signature, version, target) before it writes anything, and
+            rejects a wrong target.
+            If anything fails, use Sony's official updater.</p>
           <p>Protocol derived from
             <a href="https://github.com/nchie/dualsense-updater-rs">dualsense-updater-rs</a>
             (MIT). Not hardware-tested.</p>
